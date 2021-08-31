@@ -48,6 +48,12 @@ cp configs-$EL_VERSION/config-$KERNEL_FULL_VERSION* /root/rpmbuild/SOURCES/
 cp configs-$EL_VERSION/cpupower.* /root/rpmbuild/SOURCES/
 cp specs-$EL_VERSION/$KERNEL_TYPE-$KERNEL_BASE_VERSION.spec /root/rpmbuild/SPECS/
 
+# Copy additional files for EL8 kernels
+if [[ $EL_VERSION -eq "8" ]]; then
+    cp configs-$EL_VERSION/mod-extra.list /root/rpmbuild/SOURCES/
+    cp scripts-$EL_VERSION/* /root/rpmbuild/SOURCES/
+fi
+
 # Get our aufs-standalone source
 cd /root/rpmbuild/SOURCES/
 git clone git://github.com/sfjro/aufs5-standalone.git -b aufs$KERNEL_BASE_VERSION aufs-standalone
