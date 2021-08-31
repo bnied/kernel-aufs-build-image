@@ -7,6 +7,7 @@ EXPECTED_VARS=(
     "KERNEL_FULL_VERSION"
     "KERNEL_TYPE" 
     "EL_VERSION"
+    "RELEASE_VERSION"
 )
 
 for each in "${EXPECTED_VARS[@]}"; do
