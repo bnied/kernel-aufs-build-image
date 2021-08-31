@@ -1,14 +1,18 @@
 build_7:
-	docker build --rm=true -t bnied/kernel-aufs-build-image:el7 -f el7/Dockerfile .
+	@read -p "Enter your Docker username: " username; \
+	docker build --rm=true -t $$username/kernel-aufs-build-image:el7 -f el7/Dockerfile .
 
 build_8:
-	docker build --rm=true -t bnied/kernel-aufs-build-image:el8 -f el8/Dockerfile .
+	@read -p "Enter your Docker username: " username; \
+	docker build --rm=true -t $$username/kernel-aufs-build-image:el8 -f el8/Dockerfile .
 
 release_7:
-	docker push bnied/kernel-aufs-build-image:el7
+	@read -p "Enter your Docker username: " username; \
+	docker push $$username/kernel-aufs-build-image:el7
 
 release_8:
-	docker push bnied/kernel-aufs-build-image:el8
+	@read -p "Enter your Docker username: " username; \
+	docker push $$username/kernel-aufs-build-image:el8
 
 build_all:
 	make build_7
