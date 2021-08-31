@@ -65,12 +65,12 @@ rm -rf cd /root/rpmbuild/SOURCES/aufs-standalone
 
 # Build our source RPM with spectool and rpmbuild
 cd /root/rpmbuild/SPECS/
-spectool -g -C /root/rpmbuild/SOURCES/ /$KERNEL_TYPE-$KERNEL_BASE_VERSION.spec
-rpmbuild -bs /$KERNEL_TYPE-$KERNEL_BASE_VERSION.spec
+spectool -g -C /root/rpmbuild/SOURCES/ $KERNEL_TYPE-$KERNEL_BASE_VERSION.spec
+rpmbuild -bs $KERNEL_TYPE-$KERNEL_BASE_VERSION.spec
 
 # Rebuild our source RPM into actual RPMs
 cd /root/rpmbuild/SRPMS/
-rpmbuild --rebuild /$KERNEL_TYPE-$KERNEL_FULL_VERSION-$RELEASE_VERSION.$EL_VERSION.src.rpm
+rpmbuild --rebuild $KERNEL_TYPE-$KERNEL_FULL_VERSION-$RELEASE_VERSION.$EL_VERSION.src.rpm
 
 # Copy our finished RPMs to our storage directory
 mkdir -p /root/$KERNEL_TYPE_SHORT/SRPMS
