@@ -37,7 +37,7 @@ git clone git://github.com/bnied/$KERNEL_TYPE.git /opt/$KERNEL_TYPE
 
 # Get our RPM dependencies
 cd /opt/$KERNEL_TYPE/specs-$EL_VERSION/
-yum-builddep -y /$KERNEL_TYPE-$KERNEL_BASE_VERSION.spec
+yum-builddep -y $KERNEL_TYPE-$KERNEL_BASE_VERSION.spec
 
 # Create our build directories
 mkdir -p /root/rpmbuild/{SOURCES,SPECS,RPMS,SRPMS}
