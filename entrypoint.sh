@@ -20,7 +20,7 @@ done
 # Set up our variables. From here, we'll know what kind of kernel we're setting up
 IFS='-' read -r -a KERNEL_TYPE_ARRAY <<< $KERNEL_TYPE
 
-if [[ ${#CURRENT_VERSION_ARRAY[@]} -ne "3" ]]; then
+if [[ ${#KERNEL_TYPE_ARRAY[@]} -ne "3" ]]; then
     echo "Kernel type $KERNEL_TYPE not recognized."
     exit 1
 else
