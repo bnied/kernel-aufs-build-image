@@ -67,7 +67,7 @@ fi
 cd /root/rpmbuild/SOURCES/aufs-standalone
 HEAD_COMMIT=$(git rev-parse --short HEAD)
 git archive $HEAD_COMMIT > ../aufs-standalone.tar
-rm -rf cd /root/rpmbuild/SOURCES/aufs-standalone
+rm -rf /root/rpmbuild/SOURCES/aufs-standalone
 
 # Build our source RPM with spectool and rpmbuild
 cd /root/rpmbuild/SPECS/
