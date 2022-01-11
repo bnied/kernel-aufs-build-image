@@ -33,7 +33,7 @@ IFS='.' read -r -a VERSION_ARRAY <<< $KERNEL_FULL_VERSION
 KERNEL_BASE_VERSION="${VERSION_ARRAY[0]}.${VERSION_ARRAY[1]}"
 
 # Make sure we have the latest code
-git clone ssh://git@github.com/bnied/$KERNEL_TYPE.git /opt/$KERNEL_TYPE
+git clone https://github.com/bnied/$KERNEL_TYPE.git /opt/$KERNEL_TYPE
 
 # Get our RPM dependencies
 cd /opt/$KERNEL_TYPE/specs-$EL_VERSION/
@@ -57,16 +57,16 @@ fi
 # Get our aufs-standalone source
 cd /root/rpmbuild/SOURCES/
 if [[ "$KERNEL_BASE_VERSION" == "5.10" ]]; then
-    git clone ssh://git@github.com/sfjro/aufs5-standalone.git -b aufs5.10.82 aufs-standalone
+    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.10.82 aufs-standalone
 elif [[ "$KERNEL_BASE_VERSION" == "5.15" ]]; then
-    git clone ssh://git@github.com/sfjro/aufs5-standalone.git -b aufs5.15.5 aufs-standalone
+    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.15.5 aufs-standalone
 else
-    git clone ssh://git@github.com/sfjro/aufs5-standalone.git -b aufs$KERNEL_BASE_VERSION aufs-standalone
+    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs$KERNEL_BASE_VERSION aufs-standalone
 fi
 
 # If there's no branch matching our kernel version, use aufs5.x-rcN
 if [[ $? != 0 ]]; then
-    git clone ssh://git@github.com/sfjro/aufs5-standalone.git -b aufs5.x-rcN aufs-standalone
+    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.x-rcN aufs-standalone
 fi
 
 # Tar up our aufs source and remove the git directory
