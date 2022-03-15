@@ -57,9 +57,11 @@ fi
 # Get our aufs-standalone source
 cd /root/rpmbuild/SOURCES/
 if [[ "$KERNEL_BASE_VERSION" == "5.10" ]]; then
-    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.10.82 aufs-standalone
+    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.10.103 aufs-standalone
 elif [[ "$KERNEL_BASE_VERSION" == "5.15" ]]; then
-    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.15.5 aufs-standalone
+    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.15.25 aufs-standalone
+elif [[ "$KERNEL_BASE_VERSION" == "5.16" ]]; then
+    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.16.12 aufs-standalone
 else
     git clone https://github.com/sfjro/aufs5-standalone.git -b aufs$KERNEL_BASE_VERSION aufs-standalone
 fi
