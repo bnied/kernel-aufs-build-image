@@ -29,7 +29,9 @@ docker run \
 ## To build:
 * `make build_7:`: Build EL7 image.
 * `make build_8`: Build EL8 image.
+* `make build_9`: Build EL9 image.
 * `make release_7`: Upload EL7 image.
 * `make release_8`: Upload EL8 image.
+* `make release_9`: Upload EL9 image.
 * `make build_all`: Build all images.
 * `make release_all`: Upload all images
