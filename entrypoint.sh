@@ -49,7 +49,7 @@ cp configs-$EL_VERSION/cpupower.* /root/rpmbuild/SOURCES/
 cp specs-$EL_VERSION/$KERNEL_TYPE-$KERNEL_BASE_VERSION.spec /root/rpmbuild/SPECS/
 
 # Copy additional files for EL8 kernels
-if [[ "$EL_VERSION" == "el8" && "$EL_VERSION" == "el9" ]]; then
+if [[ "$EL_VERSION" == "el8" || "$EL_VERSION" == "el9" ]]; then
     cp configs-$EL_VERSION/mod-extra.list /root/rpmbuild/SOURCES/
     cp scripts-$EL_VERSION/* /root/rpmbuild/SOURCES/
 fi
@@ -60,7 +60,7 @@ if [[ "$KERNEL_BASE_VERSION" == "5.10" ]]; then
     git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.10.82 aufs-standalone
 elif [[ "$KERNEL_BASE_VERSION" == "5.15" ]]; then
     git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.15.41 aufs-standalone
-elif [[ "$CURRENT_KERNEL_BASE_VERSION" == "5.17" ]]; then
+elif [[ "$KERNEL_BASE_VERSION" == "5.17" ]]; then
     git clone ssh://git@github.com/sfjro/aufs5-standalone.git -b aufs5.17.3 aufs-standalone
 else
     git clone https://github.com/sfjro/aufs5-standalone.git -b aufs$KERNEL_BASE_VERSION aufs-standalone
