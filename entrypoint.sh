@@ -2,6 +2,8 @@
 
 set -x
 
+AUFS_REPO="https://github.com/sfjro/aufs-standalone.git"
+
 # Ensure we have the base env vars we expect
 EXPECTED_VARS=(
     "KERNEL_FULL_VERSION"
@@ -57,18 +59,18 @@ fi
 # Get our aufs-standalone source
 cd /root/rpmbuild/SOURCES/
 if [[ "$KERNEL_BASE_VERSION" == "5.10" ]]; then
-    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.10.82 aufs-standalone
+    git clone $AUFS_REPO -b aufs5.10.82 aufs-standalone
 elif [[ "$KERNEL_BASE_VERSION" == "5.15" ]]; then
-    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.15.41 aufs-standalone
+    git clone $AUFS_REPO -b aufs5.15.41 aufs-standalone
 elif [[ "$KERNEL_BASE_VERSION" == "5.17" ]]; then
-    git clone ssh://git@github.com/sfjro/aufs5-standalone.git -b aufs5.17.3 aufs-standalone
+    git clone $AUFS_REPO -b aufs5.17.3 aufs-standalone
 else
-    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs$KERNEL_BASE_VERSION aufs-standalone
+    git clone $AUFS_REPO -b aufs$KERNEL_BASE_VERSION aufs-standalone
 fi
 
 # If there's no branch matching our kernel version, use aufs5.x-rcN
 if [[ $? != 0 ]]; then
-    git clone https://github.com/sfjro/aufs5-standalone.git -b aufs5.x-rcN aufs-standalone
+    git clone $AUFS_REPO -b aufs5.x-rcN aufs-standalone
 fi
 
 # Tar up our aufs source and remove the git directory
