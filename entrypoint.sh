@@ -70,7 +70,7 @@ fi
 
 # If there's no branch matching our kernel version, use aufs5.x-rcN
 if [[ $? != 0 ]]; then
-    git clone $AUFS_REPO -b aufs$KERNEL_BASE_VERSION.x-rcN aufs-standalone
+    git clone $AUFS_REPO -b aufs${VERSION_ARRAY[0]}.x-rcN aufs-standalone
 fi
 
 # Tar up our aufs source and remove the git directory
