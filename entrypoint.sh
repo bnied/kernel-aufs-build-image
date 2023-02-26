@@ -56,6 +56,13 @@ if [[ "$EL_VERSION" == "el8" || "$EL_VERSION" == "el9" ]]; then
     cp scripts-$EL_VERSION/* /root/rpmbuild/SOURCES/
 fi
 
+if [[ "$EL_VERSION" == "el9" ]]; then
+    cp configs-$EL_VERSION/kvm_stat.logrotate /root/rpmbuild/SOURCES/
+    cp configs-$EL_VERSION/rheldup3.x509 /root/rpmbuild/SOURCES/
+    cp configs-$EL_VERSION/rhelkpatch1.x509 /root/rpmbuild/SOURCES/
+    cp configs-$EL_VERSION/x509.genkey /root/rpmbuild/SOURCES/
+fi
+
 # Get our aufs-standalone source
 cd /root/rpmbuild/SOURCES/
 if [[ "$KERNEL_BASE_VERSION" == "5.10" ]]; then
