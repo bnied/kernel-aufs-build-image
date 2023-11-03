@@ -19,6 +19,18 @@ for each in "${EXPECTED_VARS[@]}"; do
     fi
 done
 
+# Default to doing a full kernel build, unless we specify to only build the source RPM
+if [[ ! -v SOURCE_RPM_ONLY ]]; then
+    echo "$SOURCE_RPM_ONLY is unset, doing a full build..."
+    SOURCE_RPM_ONLY=0
+else
+    if [[ $SOURCE_RPM_ONLY -eq 0 ]]; then
+        echo "Full build requested..."
+    elif [[ $SOURCE_RPM_ONLY -eq 1 ]]; then
+        echo "Source RPM-only build requested..."
+    fi
+fi
+
 # Set up our variables. From here, we'll know what kind of kernel we're setting up
 IFS='-' read -r -a KERNEL_TYPE_ARRAY <<< $KERNEL_TYPE
 
@@ -92,8 +104,10 @@ spectool -g -C /root/rpmbuild/SOURCES/ $KERNEL_TYPE-$KERNEL_BASE_VERSION.spec
 rpmbuild -bs $KERNEL_TYPE-$KERNEL_BASE_VERSION.spec
 
 # Rebuild our source RPM into actual RPMs
-cd /root/rpmbuild/SRPMS/
-rpmbuild --rebuild $KERNEL_TYPE-$KERNEL_FULL_VERSION-$RELEASE_VERSION.$EL_VERSION.src.rpm
+if [[ $SOURCE_RPM_ONLY -eq 0 ]]; then
+    cd /root/rpmbuild/SRPMS/
+    rpmbuild --rebuild $KERNEL_TYPE-$KERNEL_FULL_VERSION-$RELEASE_VERSION.$EL_VERSION.src.rpm
+fi
 
 # Copy our finished RPMs to our storage directory
 mkdir -p /root/$KERNEL_TYPE_SHORT/SRPMS
